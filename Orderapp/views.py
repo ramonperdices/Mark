@@ -13,7 +13,7 @@ def order(request):
         if form.is_valid():
             gmail_user = 'genmerchorder@gmail.com'
             gmail_pwd = 'thisisadummypassword01'
-            to = 'thisisadummyusername01@gmail.com'
+            to = 'mr.genmerch@gmail.com'
             subject = 'Order'
             message = ' Order: ' + form.cleaned_data['what_are_you_ordering'] + '\n Quantity: ' + str(form.cleaned_data['quantity']) + '\n Name: ' + form.cleaned_data['last_name'] + ', ' + form.cleaned_data['first_name'] + '\n Company: ' + form.cleaned_data['company'] + '\n Address: ' + form.cleaned_data['address'] + '\n Place of Delivery: ' + form.cleaned_data['place_of_delivery']
             header = 'To:' + to + '\n' + 'From: ' + gmail_user + '\n' + 'Subject:' + subject + '\n'
