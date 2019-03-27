@@ -11,7 +11,7 @@ def order(request):
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
-            gmail_user = 'thisisadummyusername01@gmail.com'
+            gmail_user = 'genmerchorder@gmail.com'
             gmail_pwd = 'thisisadummypassword01'
             to = 'thisisadummyusername01@gmail.com'
             subject = 'Order'
