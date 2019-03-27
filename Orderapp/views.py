@@ -15,7 +15,7 @@ def order(request):
             gmail_pwd = 'thisisadummypassword01'
             to = 'thisisadummyusername01@gmail.com'
             subject = 'Order'
-            message = 'Order: ' + form.cleaned_data['what_are_you_ordering'] + 'Quantity: ' + form.cleaned_data['quantity'] + 'Name: ' + form.cleaned_data['last_name'] + form.cleaned_data['first_name'] + '\n Company: ' + form.cleaned_data['company'] + '\n Address: ' + form.cleaned_data['address'] + '\n Place of Delivery: ' + form.cleaned_data['place_of_delivery']
+            message = 'Order: ' + form.cleaned_data['what_are_you_ordering'] + 'Quantity: ' + str(form.cleaned_data['quantity']) + 'Name: ' + form.cleaned_data['last_name'] + form.cleaned_data['first_name'] + '\n Company: ' + form.cleaned_data['company'] + '\n Address: ' + form.cleaned_data['address'] + '\n Place of Delivery: ' + form.cleaned_data['place_of_delivery']
             header = 'To:' + to + '\n' + 'From: ' + gmail_user + '\n' + 'Subject:' + subject + '\n'
             msg = header + '\n' + message + '\n\n'
             # ##---------------email is sent ----------------##
