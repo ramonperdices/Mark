@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Order</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+</head>
+<style>
+
+    .ws-10 { margin-bottom: 10px; }
+    .ws-20 { margin-bottom: 20px; }
+    .ws-30 { margin-bottom: 30px; }
+    .ws-40 { margin-bottom: 40px; }
+    .ws-50 { margin-bottom: 50px; }
+
+    h1 {
+        font-size: 1.6em;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    label {
+        display: block;
+        font-size: 0.75em;
+        margin-bottom: 5px;
+        color: #546E7A;
+    }
+
+    input {
+        display: block;
+        width: 100%;
+
+        font-size: 1em;
+        font-color: #47565b;
+
+        border: 1px solid #BDBDBD;
+        border-width: 0px 0px 1px 0px;
+
+        outline: none;
+    }
+    input:focus {
+        border: 1.5px solid #4CAF50;
+        border-width: 0px 0px 1.5px 0px;
+    }
+
+    body {
+        margin-top: 50px;
+        font-size: 20px; /* Increased text to enable scrolling */
+        padding: 0px 18%;
+        font-family: 'Montserrat', sans-serif;
+    }
+    #bodydiv{
+        width: 50%;
+        margin: 0 auto;
+    }
+    #thisisbody {
+        background: url("/static/img/sample.jpg") 100% fixed;
+        height: 100%;
+        width: 100%;
+        color: white;
+    }
+    .button {
+        font-family: 'Montserrat', sans-serif;
+        display: inline-block;
+        padding: 15px 25px;
+        font-size: 0.8em;
+        cursor: pointer;
+        background-color: #4cc54f;
+        outline: none;
+        border: none;
+        color: white;
+
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 30px;
+
+        box-shadow: 0 2px #afafaf;
+    }
+    .button:hover {
+        background-color: #4CAF50;
+    }
+    .button:active {
+        {#transform: translateY(4px);#}
+        background-color: #5ed171;
+
+    }
+</style>
+<body>
+    <div id="bodydiv">
+        <h1 class="ws-30">Order</h1>
+
+
+        <form action="{% url 'order' %}" method="POST">
+            <div class="ws-40">
+                {% csrf_token %}
+                <div class="ws-30">
+                    <label for="id_what_are_you_ordering">What are you ordering:</label>
+                    <input type="text" name="what_are_you_ordering" required="" id="id_what_are_you_ordering">
+                </div>
+
+                <div class="ws-30">
+                    <label for="id_quantity">Quantity:</label>
+                    <input type="number" name="quantity" required="" id="id_quantity">
+                </div>
+
+                <div class="ws-30">
+                    <label for="id_last_name">Last name:</label>
+                    <input type="text" name="last_name" required="" id="id_last_name">
+                </div>
+
+                <div class="ws-30">
+                    <label for="id_first_name">First name:</label>
+                    <input type="text" name="first_name" required="" id="id_first_name">
+                </div>
+
+                <div class="ws-30">
+                    <label for="id_company">Company:</label>
+                    <input type="text" name="company" required="" id="id_company">
+                </div>
+
+                <div class="ws-30">
+                    <label for="id_address">Address:</label>
+                    <input type="text" name="address" required="" id="id_address">
+                </div>
+
+                <div class="ws-30">
+                    <label for="id_place_of_delivery">Place of delivery:</label>
+                    <input type="text" name="place_of_delivery" required="" id="id_place_of_delivery">
+                </div>
+            </div>
+            <button type="submit" class="button">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
