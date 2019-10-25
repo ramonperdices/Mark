@@ -6,6 +6,7 @@ class OrderForm(forms.Form):
     quantity = forms.IntegerField(required=True)
     last_name = forms.CharField(required=True)
     first_name = forms.CharField(required=True)
+    email = forms.EmailField(required=True)
     company = forms.CharField(required=True)
     address = forms.CharField(required=True)
     place_of_delivery = forms.CharField(required=True)

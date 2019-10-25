@@ -13,9 +13,9 @@ def order(request):
         if form.is_valid():
             gmail_user = 'genmerchorder@gmail.com'
             gmail_pwd = 'thisisadummypassword01'
-            to = 'mr.genmerch@gmail.com'
+            to = 'mr.genmerch@gmail.com'# actual is mr.genmerch@gmail.com
             subject = 'Order'
-            message = ' Order: ' + form.cleaned_data['what_are_you_ordering'] + '\n Quantity: ' + str(form.cleaned_data['quantity']) + '\n Name: ' + form.cleaned_data['last_name'] + ', ' + form.cleaned_data['first_name'] + '\n Company: ' + form.cleaned_data['company'] + '\n Address: ' + form.cleaned_data['address'] + '\n Place of Delivery: ' + form.cleaned_data['place_of_delivery']
+            message = ' Order: ' + form.cleaned_data['what_are_you_ordering'] + '\n Quantity: ' + str(form.cleaned_data['quantity']) + '\n Name: ' + form.cleaned_data['last_name'] + ', ' + form.cleaned_data['first_name'] + '\n Email: ' + form.cleaned_data['email'] + '\n Company: ' + form.cleaned_data['company'] + '\n Address: ' + form.cleaned_data['address'] + '\n Place of Delivery: ' + form.cleaned_data['place_of_delivery']
             header = 'To:' + to + '\n' + 'From: ' + gmail_user + '\n' + 'Subject:' + subject + '\n'
             msg = header + '\n' + message + '\n\n'
             # ##---------------email is sent ----------------##
@@ -26,7 +26,27 @@ def order(request):
             smtpserver.login(gmail_user, gmail_pwd)
             smtpserver.sendmail(gmail_user, to, msg)
             smtpserver.close()
-            return render(request, 'thank_you.html')
+            # ##---------------reply----------------##
+            to = form.cleaned_data['email']
+            subject = 'Order'
+            message = 'Thank you for placing your order!\n Order: ' + form.cleaned_data['what_are_you_ordering'] + '\n Quantity: ' + str(form.cleaned_data['quantity']) + '\n Name: ' + form.cleaned_data['last_name'] + ', ' + form.cleaned_data['first_name'] + '\n Company: ' + form.cleaned_data['company'] + '\n Address: ' + form.cleaned_data['address'] + '\n Place of Delivery: ' + form.cleaned_data['place_of_delivery'] + '\n \nIf you have any questions or concerns please contact us at mr.genmerch@gmail.com'
+            header = 'To:' + to + '\n' + 'From: ' + gmail_user + '\n' + 'Subject:' + subject + '\n'
+            replymsg = header + '\n' + message + '\n\n'
+
+            # ##---------------reply is sent ----------------##
+            smtpserver = smtplib.SMTP_SSL('smtp.gmail.com', 465)  # 587 for non ssl or 465
+            smtpserver.ehlo()
+            # smtpserver.starttls()
+            smtpserver.ehlo()
+            smtpserver.login(gmail_user, gmail_pwd)
+            smtpserver.sendmail(gmail_user, to, replymsg)
+            smtpserver.close()
+            form = OrderForm()
+            context = {
+                'form': form,
+                'alert_flag': True
+            }
+            return render(request, 'order_form.html', context)
         else:
             # if sum not equal... then redirect to custom url/page
             return HttpResponseRedirect('/')  # mention redirect url in argument

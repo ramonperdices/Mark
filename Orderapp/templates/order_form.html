@@ -93,37 +93,42 @@
         <form action="{% url 'order' %}" method="POST">
             <div class="ws-40">
                 {% csrf_token %}
-                <div class="ws-30">
+                <div class="ws-20">
                     <label for="id_what_are_you_ordering">What are you ordering:</label>
                     <input type="text" name="what_are_you_ordering" required="" id="id_what_are_you_ordering">
                 </div>
 
-                <div class="ws-30">
+                <div class="ws-20">
                     <label for="id_quantity">Quantity:</label>
                     <input type="number" name="quantity" required="" id="id_quantity">
                 </div>
 
-                <div class="ws-30">
+                <div class="ws-20">
                     <label for="id_last_name">Last name:</label>
                     <input type="text" name="last_name" required="" id="id_last_name">
                 </div>
 
-                <div class="ws-30">
+                <div class="ws-20">
                     <label for="id_first_name">First name:</label>
                     <input type="text" name="first_name" required="" id="id_first_name">
                 </div>
 
-                <div class="ws-30">
+                <div class="ws-20">
+                    <label for="id_email">Email:</label>
+                    <input type="text" name="email" required="" id="id_email">
+                </div>
+
+                <div class="ws-20">
                     <label for="id_company">Company:</label>
                     <input type="text" name="company" required="" id="id_company">
                 </div>
 
-                <div class="ws-30">
+                <div class="ws-20">
                     <label for="id_address">Address:</label>
                     <input type="text" name="address" required="" id="id_address">
                 </div>
 
-                <div class="ws-30">
+                <div class="ws-20">
                     <label for="id_place_of_delivery">Place of delivery:</label>
                     <input type="text" name="place_of_delivery" required="" id="id_place_of_delivery">
                 </div>
@@ -132,4 +137,7 @@
         </form>
     </div>
 </body>
+{% if alert_flag %}
+    <script>alert("Your order has been submitted, thank you!")</script>
+{% endif %}
 </html>
