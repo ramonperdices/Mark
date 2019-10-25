@@ -44,7 +44,6 @@ def order(request):
             form = OrderForm()
             context = {
                 'form': form,
-                'alert_flag': True
             }
             return render(request, 'order_form.html', context)
         else:
