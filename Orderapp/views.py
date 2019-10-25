@@ -19,7 +19,7 @@ def order(request):
             header = 'To:' + to + '\n' + 'From: ' + gmail_user + '\n' + 'Subject:' + subject + '\n'
             msg = header + '\n' + message + '\n\n'
             # ##---------------email is sent ----------------##
-            smtpserver = smtplib.SMTP_SSL('smtp.gmail.com', 587)#587 for non ssl or 465
+            smtpserver = smtplib.SMTP_SSL('smtp.gmail.com', 465)#587 for non ssl or 465
             smtpserver.ehlo()
             #smtpserver.starttls()
             smtpserver.ehlo()
@@ -34,14 +34,6 @@ def order(request):
             replymsg = header + '\n' + message + '\n\n'
 
             # ##---------------reply is sent ----------------##
-            smtpserver = smtplib.SMTP_SSL('smtp.gmail.com', 587)# 587 for non ssl or 465
-            smtpserver.ehlo()
-            # smtpserver.starttls()
-            smtpserver.ehlo()
-            smtpserver.login(gmail_user, gmail_pwd)
-            smtpserver.sendmail(gmail_user, to, replymsg)
-            smtpserver.close()
-            form = OrderForm()
             context = {
                 'form': form,
                 'alert_flag': True
